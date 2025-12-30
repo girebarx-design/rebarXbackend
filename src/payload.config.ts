@@ -143,14 +143,8 @@ import SEO from './collections/SEO'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-console.log('ENV CHECK:', {
-  PAYLOAD_SECRET: process.env.PAYLOAD_SECRET,
-  DATABASE_URI: process.env.DATABASE_URI,
-})
-
 export default buildConfig({
-  serverURL: 'http://localhost:3000',
-  // serverURL: 'https://rebar-xbackend.vercel.app',
+  serverURL: 'https://rebar-xbackend.vercel.app',
   cors: [
     'http://localhost:3001',
     'http://localhost:3000',
@@ -176,14 +170,12 @@ export default buildConfig({
   ],
   globals: [ContactPage, SEO],
   editor: lexicalEditor(),
-  // secret: process.env.PAYLOAD_SECRET || '',
-  secret: process.env.PAYLOAD_SECRET! ,
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
-    // url: process.env.DATABASE_URI || '',
-    url: process.env.DATABASE_URI!,
+    url: process.env.DATABASE_URI || '',
   }),
   sharp,
   plugins: [payloadCloudPlugin()],
