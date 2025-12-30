@@ -140,56 +140,61 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    // CRITICAL: Disable staticDir for Vercel
-    disableLocalStorage: true,
-    adminThumbnail: ({ doc }) => {
-      return (doc as any).cloudinaryUrl || null
-    },
-    imageSizes: [
-      {
-        name: 'thumbnail',
-        width: 400,
-        height: 300,
-        position: 'centre',
-      },
-      {
-        name: 'card',
-        width: 768,
-        height: 1024,
-        position: 'centre',
-      },
-      {
-        name: 'tablet',
-        width: 1024,
-        height: undefined,
-        position: 'centre',
-      },
-    ],
-    mimeTypes: ['image/*'],
-  },
-  hooks: {
-    beforeChange: [
-      async ({ data, req }) => {
-        // Handle file upload BEFORE the document is created
-        if (req.file) {
-          try {
-            console.log('🔄 Processing upload in beforeChange:', req.file.name)
+  staticDir: 'public/media',
+  staticURL: '/media',
+  mimeTypes: ['image/*'],
+},
+  // upload: {
+  //   // CRITICAL: Disable staticDir for Vercel
+  //   disableLocalStorage: true,
+  //   adminThumbnail: ({ doc }) => {
+  //     return (doc as any).cloudinaryUrl || null
+  //   },
+  //   imageSizes: [
+  //     {
+  //       name: 'thumbnail',
+  //       width: 400,
+  //       height: 300,
+  //       position: 'centre',
+  //     },
+  //     {
+  //       name: 'card',
+  //       width: 768,
+  //       height: 1024,
+  //       position: 'centre',
+  //     },
+  //     {
+  //       name: 'tablet',
+  //       width: 1024,
+  //       height: undefined,
+  //       position: 'centre',
+  //     },
+  //   ],
+  //   mimeTypes: ['image/*'],
+  // },
+  // hooks: {
+  //   beforeChange: [
+  //     async ({ data, req }) => {
+  //       // Handle file upload BEFORE the document is created
+  //       if (req.file) {
+  //         try {
+  //           console.log('🔄 Processing upload in beforeChange:', req.file.name)
 
-            // Upload to Cloudinary using the file buffer
-            const result = await uploadToCloudinary(req.file.data, req.file.name)
+  //           // Upload to Cloudinary using the file buffer
+  //           const result = await uploadToCloudinary(req.file.data, req.file.name)
 
-            // Set the Cloudinary URL in the data before saving
-            data.cloudinaryUrl = result.secure_url
+  //           // Set the Cloudinary URL in the data before saving
+  //           data.cloudinaryUrl = result.secure_url
 
-            console.log('✅ Cloudinary URL set:', result.secure_url)
-          } catch (error) {
-            console.error('❌ Error uploading to Cloudinary:', error)
-            throw error // This will prevent the document from being created
-          }
-        }
+  //           console.log('✅ Cloudinary URL set:', result.secure_url)
+  //         } catch (error) {
+  //           console.error('❌ Error uploading to Cloudinary:', error)
+  //           throw error // This will prevent the document from being created
+  //         }
+  //       }
 
-        return data
-      },
-    ],
-  },
+  //       return data
+  //     },
+  //   ],
+  // },
 }
