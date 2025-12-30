@@ -157,7 +157,6 @@ export default buildConfig({
     'https://rebar-x.vercel.app',
     'https://www.rebarx.in',
     'https://rebarx.in',
-    'https://rebar-xfrontend.vercel.app',
     process.env.PAYLOAD_PUBLIC_SERVER_URL || 'https://your-app.onrender.com',
   ],
   admin: {
