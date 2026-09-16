@@ -137,6 +137,7 @@ import BlogPosts from './collections/BlogPosts'
 import Footer from './collections/Footer'
 import ContactSubmissions from './collections/ContactSubmissions'
 import ContactPage from './collections/ContactPage'
+import Applications from './collections/Applications'
 
 import SEO from './collections/SEO'
 
@@ -167,6 +168,7 @@ export default buildConfig({
     BlogPosts,
     ContactSubmissions,
     Footer,
+    Applications,
   ],
   globals: [ContactPage, SEO],
   editor: lexicalEditor(),
