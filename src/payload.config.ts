@@ -138,6 +138,7 @@ import Footer from './collections/Footer'
 import ContactSubmissions from './collections/ContactSubmissions'
 import ContactPage from './collections/ContactPage'
 import Applications from './collections/Applications'
+import Cities from './collections/Cities'
 
 import SEO from './collections/SEO'
 
@@ -169,6 +170,7 @@ export default buildConfig({
     ContactSubmissions,
     Footer,
     Applications,
+    Cities,
   ],
   globals: [ContactPage, SEO],
   editor: lexicalEditor(),
